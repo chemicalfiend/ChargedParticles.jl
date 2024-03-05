@@ -1,5 +1,7 @@
 module ChargedParticles
 
-# Write your package code here.
+include("system.jl")
+include("dynamics.jl")
+
 
 end
