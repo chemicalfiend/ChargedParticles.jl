@@ -20,6 +20,11 @@ z = [pos1[3, 1], pos2[3, 1]]
 
 fig, ax, scat = scatter(x, y, z)
 
+#=scene = LScene(fig[1, 1], scenekw=(center=false,))
+cam = cameracontrols(scene.scene)
+cam.eyeposition[] = [0, 0, 1000]
+cam.lookat[] = [500, 0, 0]
+update_cam!(scene.scene, cam)=#
 fps = 30
 
 record(fig, "animate.mp4", 1:1000) do i
