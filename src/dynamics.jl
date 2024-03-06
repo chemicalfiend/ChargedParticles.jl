@@ -27,7 +27,11 @@ function simulate!(sys::System, sim::Simulation)
     for i in 1:sim.nsteps
         for (j, particle) in enumerate(sys.charges)
             neighbours = GetNeighbours(sys, particle, sim.cutoff)
-            F = sum([(-k * particle.charge * n.charge / (distance(particle, n))^3)*(particle.position - n.position) for n in neighbours])
+
+            F = zeros(3)
+            for n in neighbours
+                F += (k * particle.charge * n.charge / (distance(particle, n))^3)*(particle.position - n.position)
+            end
             particle.velocity += (F/particle.mass)*sim.dt
             particle.position += particle.velocity * sim.dt
 
